@@ -10,7 +10,7 @@ import lombok.Setter;
 @Setter
 @Builder
 public class PasswordUpdateDTO implements Serializable {
-    private String username;
+    private String email;
     private String old;
     private String newPass;
 }

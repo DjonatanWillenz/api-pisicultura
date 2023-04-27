@@ -10,13 +10,12 @@ import lombok.Setter;
 @Setter
 @Builder
 public class UserSessionDTO implements Serializable {
-    
+
     private String id;
-    private String username;
-    private String password;
     private String email;
+    private String name;
+    private String password;
     private String token;
     private Boolean admin;
-    private String name;
 
 }

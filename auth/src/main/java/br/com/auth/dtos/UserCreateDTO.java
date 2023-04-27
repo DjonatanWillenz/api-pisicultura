@@ -15,7 +15,6 @@ import lombok.Setter;
 @NoArgsConstructor
 public class UserCreateDTO implements Serializable {
     private String name;
-    private String username;
     private String email;
     private String password;
 }
