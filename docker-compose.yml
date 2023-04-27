@@ -1,0 +1,53 @@
+version: '3.8'
+services:
+
+  dbtask: 
+    image: mongo
+    container_name: dbtask
+    restart: always
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME:prod
+      - MONGO_INITDB_ROOT_PASSWORD:bBsAQDnZxx6xC
+    ports:
+      - 27016:27017 
+      - 28016:28017 
+    networks:
+      - app-network
+  
+  dbnotification: 
+    image: mongo
+    container_name: dbnotification
+    restart: always
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME:prod
+      - MONGO_INITDB_ROOT_PASSWORD:bBsAQDnZxx6xC
+    ports:
+      - 27017:27017 
+      - 28017:28017 
+    networks:
+      - app-network
+  
+  dbuser: 
+    image: mongo
+    container_name: dbuser
+    restart: always
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME:prod
+      - MONGO_INITDB_ROOT_PASSWORD:bBsAQDnZxx6xC
+    ports:
+      - 27018:27017 
+      - 28018:28017 
+  
+  rabbitmq:
+    image: rabbitmq:3-management
+    container_name: rabbitmq
+    ports:
+      - 5672:5672
+      - 25672:25672
+      - 15672:15672
+    networks:
+      - app-network
+        
+networks:
+  app-network:
+    driver: bridge

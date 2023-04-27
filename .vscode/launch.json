@@ -1,0 +1,52 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "AuthApplication",
+            "request": "launch",
+            "mainClass": "br.com.auth.AuthApplication",
+            "projectName": "auth"
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-EurekaApplication<eureka>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "br.com.eureka.EurekaApplication",
+            "projectName": "eureka",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env",
+            "vmArgs": " -Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.port=51037 -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false -Dspring.jmx.enabled=true -Djava.rmi.server.hostname=localhost -Dspring.application.admin.enabled=true -Dspring.boot.project.name=eureka"
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-GatewayApplication<gateway>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "br.com.gateway.GatewayApplication",
+            "projectName": "gateway",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-TaskApplication<task>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "br.com.task.TaskApplication",
+            "projectName": "task",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-NotificationApplication<notification>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "br.com.notification.NotificationApplication",
+            "projectName": "notification",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        }
+    ]
+}
