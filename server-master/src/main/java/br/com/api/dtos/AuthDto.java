@@ -8,6 +8,6 @@ import lombok.Setter;
 @Getter
 @Setter
 public class AuthDto implements Serializable {
-    private String username;
+    private String emial;
     private String password;
 }

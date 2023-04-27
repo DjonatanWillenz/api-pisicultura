@@ -41,7 +41,7 @@ public class JwtAuthentication extends UsernamePasswordAuthenticationFilter {
             AuthDto user = new ObjectMapper()
                     .readValue(request.getInputStream(), AuthDto.class);
             return this.authenticationManager
-                    .authenticate(new UsernamePasswordAuthenticationToken(user.getUsername(), user.getPassword()));
+                    .authenticate(new UsernamePasswordAuthenticationToken(user.getEmial(), user.getPassword()));
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
