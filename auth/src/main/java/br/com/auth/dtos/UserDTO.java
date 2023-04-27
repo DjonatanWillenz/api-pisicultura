@@ -14,7 +14,10 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 public class UserDTO implements Serializable {
-    private String email;
+    private static final long serialVersionUID = 1L;
+	private String email;
     private String password;
     private String name;
+    private boolean confirmed;
+    private boolean active;
 }

@@ -1,4 +1,6 @@
 spring:
+  main:
+    allow-bean-definition-overriding: true
   application:
     name: msauth
   rabbitmq:
@@ -13,7 +15,7 @@ spring:
       port: 27018
       host: localhost
 server:
-  port: 8080
+  port: 0
 
 eureka:
   client:
@@ -22,6 +24,14 @@ eureka:
   instance:
      instance_id: ${spring.application.name}:${spring.application.instance_id:${random.value}}
 
-mq: 
-  queues:
-    notify: notify  
+rabbit: 
+  exchange:
+    user: user.topic  
+  
+  routingKey:
+    user-notification: user-notification.routingKey
+
+  queue:
+    user-notification-created: user-notification-created.queue
+    
+    

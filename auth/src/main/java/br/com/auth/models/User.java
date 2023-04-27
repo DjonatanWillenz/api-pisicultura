@@ -22,26 +22,21 @@ import lombok.Setter;
 @Document("user")
 public class User implements Serializable {
 
-    @Id
-    private String id;
-    private String name;
-    private String email;
+	private static final long serialVersionUID = 1L;
 
-    private Date dateCreate;
+	@Id
+	private String id;
+	private String name;
+	private String email;
+	private Date dateCreate;
+	private boolean confirmed;
+	private boolean active;
 
-    private boolean confirmed;
-    private boolean active;
+	@DBRef
+	private Password password;
 
-    @DBRef
-    private Password password;
-
-    // private List<UserInstallation> installation;
-
-    public UserDTO toDTO() {
-        return UserDTO.builder()
-                .name(name)
-                .email(email)
-                .password(password.getPassword())
-                .build();
-    }
+	public UserDTO toDTO() {
+		return UserDTO.builder().name(name).email(email).confirmed(confirmed).active(active)
+				.password(password.getPassword()).build();
+	}
 }

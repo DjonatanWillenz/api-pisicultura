@@ -13,7 +13,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping()
+@RequestMapping
 public class UserController {
 
     @Autowired
@@ -26,9 +26,6 @@ public class UserController {
         } catch (Exception e) {
             return ResponseEntity
                     .status(HttpStatus.BAD_REQUEST).build();
-            // .body(RestDto.builder()
-            // .message(e.getMessage())
-            // .build());
         }
     }
 

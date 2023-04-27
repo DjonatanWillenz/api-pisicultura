@@ -40,7 +40,7 @@ public class JwtAuthentication extends UsernamePasswordAuthenticationFilter {
             AuthDTO user = new ObjectMapper()
                     .readValue(request.getInputStream(), AuthDTO.class);
             return this.authenticationManager
-                    .authenticate(new UsernamePasswordAuthenticationToken(user.getUsername(), user.getPassword()));
+                    .authenticate(new UsernamePasswordAuthenticationToken(user.getEmail(), user.getPassword()));
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
