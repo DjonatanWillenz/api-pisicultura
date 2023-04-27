@@ -7,6 +7,7 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import br.com.auth.dtos.UserDTO;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -27,14 +28,20 @@ public class User implements Serializable {
     private String email;
 
     private Date dateCreate;
-    
+
     private boolean confirmed;
     private boolean active;
 
     @DBRef
     private Password password;
 
-    //private List<UserInstallation> installation;
+    // private List<UserInstallation> installation;
 
-    
+    public UserDTO toDTO() {
+        return UserDTO.builder()
+                .name(name)
+                .email(email)
+                .password(password.getPassword())
+                .build();
+    }
 }

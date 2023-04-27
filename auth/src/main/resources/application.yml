@@ -1,0 +1,27 @@
+spring:
+  application:
+    name: msauth
+  rabbitmq:
+    host: rabbitmq
+    port: 5672
+    username: guest
+    password: guest
+  data:
+    mongodb:
+      authentication-database: admin
+      database: user
+      port: 27018
+      host: localhost
+server:
+  port: 8080
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka
+  instance:
+     instance_id: ${spring.application.name}:${spring.application.instance_id:${random.value}}
+
+mq: 
+  queues:
+    notify: notify  

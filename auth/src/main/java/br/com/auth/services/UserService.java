@@ -1,11 +1,14 @@
 package br.com.auth.services;
 
+import java.util.Date;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import br.com.auth.dtos.UserCreateDTO;
+import br.com.auth.dtos.UserDTO;
 import br.com.auth.models.User;
 import br.com.auth.repository.UserRepository;
 
@@ -14,9 +17,22 @@ public class UserService {
 
     @Autowired
     private UserRepository userRepository;
+    @Autowired
+    private PasswordService passwordService;
 
     @Transactional
-    public void save(UserCreateDTO user) throws Exception {
+    public UserDTO save(UserCreateDTO userDTO) throws Exception {
+
+        User user = User.builder()
+        .name(userDTO.getName())
+        .email(userDTO.getEmail())
+        .password(passwordService.create(userDTO.getPassword()))
+        .confirmed(false)
+        .dateCreate(new Date())
+        .active(true)
+        .build();
+
+       return userRepository.save(user).toDTO();
     }
 
     public User findByEmail(String email) throws UsernameNotFoundException {

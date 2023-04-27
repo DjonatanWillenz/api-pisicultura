@@ -3,9 +3,11 @@ package br.com.auth.controllers;
 import br.com.auth.dtos.PasswordUpdateDTO;
 import br.com.auth.dtos.UserCreateDTO;
 import br.com.auth.dtos.UserDTO;
+import br.com.auth.services.UserService;
 
 import java.io.Serializable;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -14,13 +16,13 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping()
 public class UserController {
 
-    //@Autowired
-    //private UserService userService;
+    @Autowired
+    private UserService userService;
 
     @PostMapping("public/user")
     public ResponseEntity<Serializable> post(@RequestBody UserCreateDTO user) {
         try {
-            return null;// ResponseEntity.ok().body(userService.save(user));
+            return ResponseEntity.ok().body(userService.save(user));
         } catch (Exception e) {
             return ResponseEntity
                     .status(HttpStatus.BAD_REQUEST).build();
