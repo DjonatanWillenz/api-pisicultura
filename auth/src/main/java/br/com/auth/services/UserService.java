@@ -19,8 +19,8 @@ public class UserService {
     public void save(UserCreateDTO user) throws Exception {
     }
 
-    public User findByUsername(String username) throws UsernameNotFoundException {
-        return userRepository.findByUsername(username)
+    public User findByEmail(String email) throws UsernameNotFoundException {
+        return userRepository.findByEmail(email)
                 .orElseThrow(() -> new UsernameNotFoundException("Usuário não encontrado!"));
     }
 }

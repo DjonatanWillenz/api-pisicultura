@@ -21,14 +21,14 @@ public class CustomUserDatailService implements UserDetailsService {
     }
 
     @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        br.com.auth.models.User user = userService.findByUsername(username);
+    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
+        br.com.auth.models.User user = userService.findByEmail(email);
         if (!user.isConfirmed())
             throw new UsernameNotFoundException("Usuário não realizou a confirmação do seu cadastro!");
         if (!user.isActive())
             throw new UsernameNotFoundException("Este cadastro não esta ativo, entre em contato com o suporte!");
         List<GrantedAuthority> authorityListUser = AuthorityUtils.createAuthorityList("ROLE_USER", "ROLE_ADMIN");
         String pass = new BCryptPasswordEncoder().encode(user.getPassword().getPassword());
-        return new User(user.getUsername(), pass, /* user.isAdmin() ? authorityListAdmin : */ authorityListUser);
+        return new User(user.getEmail(), pass, /* user.isAdmin() ? authorityListAdmin : */ authorityListUser);
     }
 }

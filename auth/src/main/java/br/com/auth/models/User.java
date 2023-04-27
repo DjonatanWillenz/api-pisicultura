@@ -23,16 +23,13 @@ public class User implements Serializable {
 
     @Id
     private String id;
-    private String username;
     private String name;
+    private String email;
 
     private Date dateCreate;
     
     private boolean confirmed;
     private boolean active;
-    
-    @DBRef
-    private Email email;
 
     @DBRef
     private Password password;

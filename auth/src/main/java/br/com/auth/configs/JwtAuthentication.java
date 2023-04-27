@@ -53,16 +53,16 @@ public class JwtAuthentication extends UsernamePasswordAuthenticationFilter {
             FilterChain chain,
             Authentication authResult) throws IOException, ServletException {
         User user = (User) authResult.getPrincipal();
-        User userAuth = userService.findByUsername(user.getUsername());
+        User userAuth = userService.findByEmail(user.getEmail());
         String token = Jwts.builder()
-                .setSubject(((User) authResult.getPrincipal()).getUsername())
+                .setSubject(((User) authResult.getPrincipal()).getEmail())
                 .setExpiration(new Date(System.currentTimeMillis() + SecurityTypes.EXPIRATION_TIME))
                 .signWith(SignatureAlgorithm.HS512, SecurityTypes.SCRET)
                 .compact();
         response.getWriter().write(JsonUtils.getInstance().toJson(
                 UserSessionDTO.builder()
                         .id(userAuth.getId())
-                        .email(userAuth.getEmail().getEmail())
+                        .email(userAuth.getEmail())
                         .name(userAuth.getName())
                         .password(userAuth.getPassword().getPassword())
                         .token(SecurityTypes.TOKEN_PREFIX + token)
