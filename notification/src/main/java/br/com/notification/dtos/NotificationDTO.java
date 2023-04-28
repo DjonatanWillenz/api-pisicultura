@@ -15,6 +15,8 @@ import lombok.Setter;
 @NoArgsConstructor
 public class NotificationDTO implements Serializable {
 
+    private static final long serialVersionUID = 1L;
+	
     private String id;
     private String idinstallation;
     private String title;

@@ -22,6 +22,7 @@ public class GatewayApplication {
 				.route(r -> r.path("/task/**").uri("lb://mstask"))
 				.route(r -> r.path("/notification/**").uri("lb://msnotification"))
 				.route(r-> r.path("/user/**").uri("lb://msauth"))
+				.route(r-> r.path("/public/**").uri("lb://msauth"))
 				.build();
 	}
 

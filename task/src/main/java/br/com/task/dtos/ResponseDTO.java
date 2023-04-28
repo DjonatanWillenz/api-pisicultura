@@ -1,4 +1,4 @@
-package br.com.notification.utils;
+package br.com.task.dtos;
 
 import java.io.Serializable;
 import java.util.Date;

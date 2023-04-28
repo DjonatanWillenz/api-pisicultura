@@ -5,9 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
-import br.com.auth.dtos.UserCreateDTO;
 import br.com.auth.dtos.UserDTO;
-import br.com.auth.utils.JsonUtils;
 
 @Component
 public class NotificationPublisher {

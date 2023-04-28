@@ -3,11 +3,11 @@ package br.com.task.models;
 import java.io.Serializable;
 import java.sql.Date;
 
-import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import br.com.task.enums.TaskEnum;
+import br.com.task.dtos.TaskDTO;
 import br.com.task.enums.StateTaskEnum;
+import br.com.task.enums.TaskEnum;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -21,25 +21,21 @@ import nonapi.io.github.classgraph.json.Id;
 @Document("task")
 public class Task implements Serializable {
 
-    @Id
-    private String  id;
-    private String title;
-    private String description;
+	private static final long serialVersionUID = 1L;
 
-    private Date dateCreate;
+	@Id
+	private String id;
+	private String description;
+	private Date dateCreate;
+	private Date dateConclused;
+	private StateTaskEnum state;
+	private String idinstallation;
+	private TaskEnum task;
+	private String key;
+	private Date lastAttempt;
 
-    private Date dateConclused;
-
-    private StateTaskEnum state;
-
-    @DBRef
-    private Installation installation;
-
-    private TaskEnum task;
-
-    private String key;
-
-    private Date lastAttempt;
- 
-    
+	public TaskDTO toDTO() {
+		return TaskDTO.builder().id(id).description(description).dateCreate(dateCreate).dateConclused(dateConclused)
+				.idinstallation(idinstallation).key(key).lastAttempt(lastAttempt).build();
+	}
 }

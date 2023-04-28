@@ -20,7 +20,9 @@ import lombok.Setter;
 @Document("notification")
 public class Notification implements Serializable {
 
-    @Id
+    private static final long serialVersionUID = 1L;
+
+	@Id
     private String id;
 
     private String idinstallation;

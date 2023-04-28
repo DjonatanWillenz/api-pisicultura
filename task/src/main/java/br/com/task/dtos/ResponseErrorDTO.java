@@ -1,6 +1,8 @@
 package br.com.task.dtos;
 
 import java.io.Serializable;
+import java.util.Date;
+import java.util.List;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -13,12 +15,11 @@ import lombok.Setter;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class NotificationDTO implements Serializable {
+public class ResponseErrorDTO implements Serializable {
+	private static final long serialVersionUID = 1L;
 
-    private static final long serialVersionUID = 1L;
-    
-	private  String id;
-    private String titulo;
-    private String texto;
-
+	private Integer status;
+	private Date time;
+	private List<String> erros;
+	
 }
