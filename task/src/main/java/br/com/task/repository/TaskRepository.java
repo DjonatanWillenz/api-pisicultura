@@ -7,5 +7,5 @@ import org.springframework.data.mongodb.repository.MongoRepository;
 import br.com.task.models.Task;
 
 public interface TaskRepository extends MongoRepository<Task, String> {
-    List<Task> findByInstallation(String idinstallation);
+    List<Task> findByIdinstallation(String idinstallation);
 }

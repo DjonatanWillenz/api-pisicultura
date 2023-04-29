@@ -19,7 +19,7 @@ public class ResponseErrorDTO implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	private Integer status;
-	private Date time;
+	private Date timestamp;
 	private List<String> erros;
 	
 }

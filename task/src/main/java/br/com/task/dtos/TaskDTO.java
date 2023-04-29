@@ -1,7 +1,7 @@
 package br.com.task.dtos;
 
 import java.io.Serializable;
-import java.sql.Date;
+import java.util.Date;
 
 import br.com.task.enums.StateTaskEnum;
 import br.com.task.enums.TaskEnum;
