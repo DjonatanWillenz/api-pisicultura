@@ -1,7 +1,5 @@
 package br.com.task.controllers;
 
-import java.io.Serializable;
-import java.util.List;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,26 +12,33 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.task.dtos.ResponseDTO;
+import br.com.task.dtos.AvisoDTO;
 import br.com.task.dtos.TaskDTO;
 import br.com.task.services.TaskService;
 
 @RestController
 @RequestMapping("task")
-public class TaskController {
+public class TaskController  extends BaseController{
 
 	@Autowired
 	private TaskService taskService;
 
 	@GetMapping("installation/{idinstallation}")
-	public ResponseEntity<Serializable> findByInstallation(@PathVariable String idinstallation) {
-		List<TaskDTO> tasks = taskService.findByInstallation(idinstallation).stream().map(i -> i.toDTO())
-				.collect(Collectors.toList());
-		return ResponseEntity.ok(ResponseDTO.builder().countRegister(tasks.size()).data(tasks).build());
+	public ResponseEntity<AvisoDTO> findByInstallation(@PathVariable String idinstallation) {
+		try {
+			return buildResponseRegistersSuccess(taskService.findByInstallation(idinstallation).stream().map(i -> i.toDTO())
+					.collect(Collectors.toList()));
+		} catch (Exception e) {
+			return buildError(e);
+		}
 	}
-	
+
 	@PostMapping
-	public ResponseEntity<Serializable> created(@RequestBody TaskDTO taskDTO) {
-		return ResponseEntity.status(HttpStatus.CREATED).body(taskService.create(taskDTO));
+	public ResponseEntity<AvisoDTO> created(@RequestBody TaskDTO taskDTO) {
+		try {
+			return buildCreateSuccess(taskService.create(taskDTO));
+		} catch (Exception e) {
+			return buildError(e, HttpStatus.EXPECTATION_FAILED); 
+		}
 	}
 }

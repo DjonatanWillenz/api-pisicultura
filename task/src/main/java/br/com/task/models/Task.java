@@ -33,7 +33,6 @@ public class Task implements Serializable {
 	private StateTaskEnum state;
 	private String idinstallation;
 	private TaskEnum task;
-	private String key;
 	private Date lastAttempt;
 
 	public TaskDTO toDTO() {
@@ -44,7 +43,6 @@ public class Task implements Serializable {
 				.task(task)
 				.state(state)
 				.idinstallation(idinstallation)
-				.key(key)
 				.lastAttempt(lastAttempt)
 				.build();
 	}
