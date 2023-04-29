@@ -55,11 +55,12 @@ public class TaskController extends BaseController {
 	}
 
 	@DeleteMapping("{id}")
-	public ResponseEntity<ResponseDTO>  deleteById(@PathVariable String id) {
+	public ResponseEntity<ResponseDTO> deleteById(@PathVariable String id) {
 		try {
-		return buildDeleteSuccess();
+			taskService.deleteByID(id);
+			return buildDeleteSuccess();
 		} catch (Exception e) {
-	return	 buildError(e);	
+			return buildError(e);
 		}
 	}
 }

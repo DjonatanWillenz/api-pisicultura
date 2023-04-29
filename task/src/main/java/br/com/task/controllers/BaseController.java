@@ -9,6 +9,7 @@ import org.springframework.stereotype.Component;
 import br.com.task.dtos.ResponseDTO;
 import br.com.task.enums.ResponseEnum;
 import br.com.task.exceptions.DataValidatorException;
+import br.com.task.exceptions.RegisterNotFoundException;
 
 @Component
 public class BaseController {
@@ -29,7 +30,7 @@ public class BaseController {
 	}
 
 	protected ResponseEntity<ResponseDTO> buildResponseRegistersSuccess(List<?> data) {
-		return ResponseEntity.status(HttpStatus.ACCEPTED)
+		return ResponseEntity.status(HttpStatus.OK)
 				.body(ResponseDTO.builder().type(ResponseEnum.SUCCESS).message("Response data.").data(data).build());
 	}
 
@@ -40,6 +41,9 @@ public class BaseController {
 	protected ResponseEntity<ResponseDTO> buildError(Exception e, HttpStatus state) {
 		if (e.getClass().equals(DataValidatorException.class)) {
 			DataValidatorException data = (DataValidatorException) e;
+			return ResponseEntity.status(state).body(data.getResponse());
+		} else if (e.getClass().equals(RegisterNotFoundException.class)) {
+			RegisterNotFoundException data = (RegisterNotFoundException) e;
 			return ResponseEntity.status(state).body(data.getResponse());
 		}
 		return ResponseEntity

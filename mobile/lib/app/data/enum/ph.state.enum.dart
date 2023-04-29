@@ -1,1 +1,0 @@
-enum PhStateEnum { NORMAL }

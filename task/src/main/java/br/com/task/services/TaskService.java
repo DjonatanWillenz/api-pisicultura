@@ -39,4 +39,9 @@ public class TaskService {
 				.idinstallation(taskDTO.getIdinstallation()).build();
 		return taskRepository.save(task).toDTO();
 	}
+	
+	@Transactional 
+	public void deleteByID(String id)  {
+		this.taskRepository.deleteById(id);
+	}
 }
