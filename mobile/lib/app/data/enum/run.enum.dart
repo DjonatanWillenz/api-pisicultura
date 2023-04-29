@@ -1,0 +1,1 @@
+enum RunEnum { MANUAL, SCHEDULED }

@@ -1,0 +1,1 @@
+enum FoodStateEnum { PENDING, CONCLUDED }

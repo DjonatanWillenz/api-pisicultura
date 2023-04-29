@@ -1,0 +1,1 @@
+enum TemperatureStateEnum { CHANGED, NORMAL }
